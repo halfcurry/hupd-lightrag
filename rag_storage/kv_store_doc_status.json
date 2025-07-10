@@ -7950,58 +7950,63 @@
     "file_path": "unknown_source"
   },
   "doc-60a054abf7eafcc12629cf1b4d57cee8": {
-    "status": "processing",
+    "status": "processed",
     "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: ASYNCHRONOUS DEEP REINFORCEMENT LEARNING\n\nApplication Number: 15349950\n\nPublication Number: US20170140270A1-20170518\n\nDecision: PENDING\n\nIPC Labels: G06N308, G06N304\n\nAbstract: Methods, systems, and apparatus, including computer programs encoded on computer storage media, for asynchronous deep reinforcement learning. One of the systems includes a plurality of workers, wherein each worker is configured to operate independently of each other worker, and wherein each worker is associated with a respective actor that interacts with a respective replica of the environment during the training of the deep neural network.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1053,
     "created_at": "2025-07-09T13:42:40.397090",
-    "updated_at": "2025-07-10T14:08:10.226308",
+    "updated_at": "2025-07-10T14:09:06.373412",
     "file_path": "unknown_source"
   },
   "doc-df817be1bc2b07d5045c8e3a32ad07ff": {
-    "status": "pending",
+    "status": "processed",
+    "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: LEARNING METHOD AND APPARATUS, AND RECORDING MEDIUM\n\nApplication Number: 15187961\n\nPublication Number: US20170004399A1-20170105\n\nDecision: PENDING\n\nIPC Labels: G06N308\n\nAbstract: A learning method for a multilayer neural network, implemented by a computer, includes starting first learning with an initial value of a learning rate, and maintaining the learning rate at the initial value or reducing the learning rate from the initial value as the first learning progresses. The learning rate is increased after the first learning. Second learning is started with the increased learning rate, and the increased learning rate is reduced as the second learning progresses.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1101,
     "created_at": "2025-07-09T13:42:42.470670",
-    "updated_at": "2025-07-09T13:42:42.470674",
+    "updated_at": "2025-07-10T14:10:28.706436",
     "file_path": "unknown_source"
   },
   "doc-deba92526b441e3e34c95df92cf1084a": {
-    "status": "pending",
+    "status": "processed",
+    "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: VARIABLE GROUPING FOR ENTITY ANALYSIS\n\nApplication Number: 15063814\n\nPublication Number: US20170262766A1-20170914\n\nDecision: PENDING\n\nIPC Labels: G06N9900, G06N504, G06F1712\n\nAbstract: Techniques and a system are provided for a variable analysis system that learns from input variables. The variable analysis system may be used to determine how variables relate to other variables, to develop a tool used to predict outcomes for an entity based on other entities. The variable analysis system may employ grouping, so that multiple variables are considered as one input in a given model.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1018,
     "created_at": "2025-07-09T13:42:44.508712",
-    "updated_at": "2025-07-09T13:42:44.508716",
+    "updated_at": "2025-07-10T14:11:10.424253",
     "file_path": "unknown_source"
   },
   "doc-3df05a4a8b390f2473b9a76808956d1e": {
-    "status": "pending",
+    "status": "processed",
+    "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: MULTI-LAYER ARTIFICIAL NEURAL NETWORK AND CONTROLLING METHOD THEREOF\n\nApplication Number: 15152528\n\nPublication Number: US20170330069A1-20171116\n\nDecision: PENDING\n\nIPC Labels: G06N3063, G06N304\n\nAbstract: A multi-layer artificial neural network including a plurality of artificial neurons, a storage device, and a controller is provided. The plurality of artificial neurons are used for performing computation based on plural parameters. The storage device is used for storing plural sets of parameters, each set of parameters being corresponding to a respective layer. At a first time instant, the controller controls the storage device to provide a set of parameters corresponding to a first layer to the plurality of artificial neurons so that the plurality of artificial neurons form at least part of the first layer. At a second time instant, the controller controls the storage device to provide a set of parameters corresponding to a second layer to the plurality of artificial neurons so that the plurality of artificial neurons format least part of the second layer.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1508,
     "created_at": "2025-07-09T13:42:46.552834",
-    "updated_at": "2025-07-09T13:42:46.552838",
+    "updated_at": "2025-07-10T14:12:57.467686",
     "file_path": "unknown_source"
   },
   "doc-35e9d69a4b0300f0c88ac455e372fd85": {
-    "status": "pending",
+    "status": "processed",
+    "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: Reduction of Computation Complexity of Neural Network Sensitivity Analysis\n\nApplication Number: 15339701\n\nPublication Number: US20170177996A1-20170622\n\nDecision: PENDING\n\nIPC Labels: G06N308, G06F1711\n\nAbstract: As part of neural network sensitivity analyses, base outputs of hidden layer nodes of a neural network model for non-perturbed variables can be reused when perturbing the variables. Such an arrangement greatly reduces complexity of the calculations required to generate outputs of the model. Related apparatus, systems, techniques and articles are also described.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1007,
     "created_at": "2025-07-09T13:42:48.597178",
-    "updated_at": "2025-07-09T13:42:48.597182",
+    "updated_at": "2025-07-10T14:13:49.297476",
     "file_path": "unknown_source"
   },
   "doc-8d543ba3b26050e4a00ed9833a7f01b5": {
-    "status": "pending",
+    "status": "processing",
+    "chunks_count": 1,
     "content": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:2207.04043\n\nLICENSE: CreativeCommons Attribution-NonCommercial-ShareAlike 4.0 International\n\n================================================================================\n\nTitle: NUMERICAL EXPRESSION ANALYSIS\n\nApplication Number: 15010439\n\nPublication Number: US20170220950A1-20170803\n\nDecision: PENDING\n\nIPC Labels: G06N9900, G06F1727\n\nAbstract: A method, computer program product and computer system are provided. A processor identifies a plurality of numeric expressions in a text corpus associated with a type of item. A processor generates a plurality of feature vectors corresponding to the identified plurality of numeric expressions. A processor identifies one or more common features of the plurality of feature vectors. A processor generates one or more rules for representing numeric quantities of the type of item based, at least in part, on the one or more common features of the plurality of feature vectors.",
     "content_summary": "SOURCE: Harvard USPTO Dataset (HUPD)\n\nREFERENCE: https://patentdataset.org/\n\nCITATION: Suzgun, M., et al. (2022). The Harvard USPTO Patent Dataset: A Large-Scale, Well-Structured, and Multi-Purpose Corpus of Patent Applications. arXiv preprint arXiv:...",
     "content_length": 1175,
     "created_at": "2025-07-09T13:42:50.641808",
-    "updated_at": "2025-07-09T13:42:50.641811",
+    "updated_at": "2025-07-10T14:13:49.640198",
     "file_path": "unknown_source"
   },
   "doc-f139aff8d18a3f866b9164aa38c74e80": {
