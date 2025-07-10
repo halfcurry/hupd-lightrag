@@ -1,0 +1,46 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.30.0
+accelerate>=0.20.0
+sentencepiece>=0.1.99
+
+# Neo4j
+neo4j>=5.0.0
+
+# Gradio for UI
+gradio>=3.40.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Vector embeddings and RAG
+gensim>=4.3.0
+scipy>=1.10.0
+
+# LightRAG Integration
+lightrag-hku[api]>=0.1.0
+pipmaster
+PyJWT
+pyuca
+
+# Utilities
+tqdm>=4.65.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Visualization
+matplotlib>=3.7.0
+networkx>=3.1.0
+seaborn>=0.12.0
+
+# Caching and serialization
+pickle5>=0.0.11
+
+# Text processing
+nltk>=3.8.0
+regex>=2023.0.0
+
+# Optional: GPU support
+# cuda-python>=12.0.0  # Uncomment if using CUDA 
