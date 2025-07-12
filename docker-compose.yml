@@ -1,0 +1,55 @@
+services:
+  lightrag:
+    container_name: lightrag
+    image: ghcr.io/hkuds/lightrag:latest
+    build:
+      context: ./LightRAG
+      dockerfile: Dockerfile
+      tags:
+        - ghcr.io/hkuds/lightrag:latest
+    ports:
+      - "${PORT:-9621}:9621"
+    volumes:
+      - ./data/rag_storage:/app/data/rag_storage
+      # - ./data/inputs:/app/data/inputs
+      # - ./config.ini:/app/config.ini
+      - ./.env:/app/.env
+    env_file:
+      - .env
+    restart: unless-stopped
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+
+
+  neo4j:
+    # The image specified in your docker run command
+    image: graphstack/dozerdb:5.26.3.0
+    container_name: neo4j_service
+    
+    # Expose the ports for the Neo4j Browser (7474) and Bolt driver (7687)
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+      
+    # Mount local directories for persistent data, logs, imports, and plugins.
+    # Using relative paths (./) makes this configuration more portable.
+    # These folders will be created in the same directory as this docker-compose.yml file.
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/logs:/logs
+      - ./neo4j/import:/var/lib/neo4j/import
+      - ./neo4j/plugins:/plugins
+      
+    # Set the environment variables for Neo4j configuration
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      # The APOC plugin is enabled here
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      # This setting allows all procedures, which is useful for plugins like APOC
+      - NEO4J_dbms_security_procedures_unrestricted=*
+      
+    # Ensure the container restarts automatically if it stops
+    restart: unless-stopped
+

@@ -145,9 +145,16 @@ logs/
 
 # Neo4j data (if any)
 neo4j_data/
+neo4j/
 
 # Model files (if any)
 *.bin
 *.model
 *.pkl
 *.pickle 
+
+hf_cache
+
+data/rag_storage
+
+LightRAG
