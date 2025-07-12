@@ -24,6 +24,8 @@ ollama pull bge-m3:latest
 git clone https://github.com/HKUDS/LightRAG.git
 
 <!-- This will create a folder LightRAG. Now we build it using the docker compose yaml file outside, which already has this folder mentioned -->
+
+# With Docker
 docker compose build
 
 <!-- Terminal 1 -->
@@ -31,6 +33,12 @@ docker compose build
 <!-- docker compose up neo4j -->
 
 docker compose up lightrag
+
+# Without Docker skip the above 2
+cd LightRAG
+pip install -e ".[api]"
+cp .env LightRAG/
+lightrag-server
 
 python lightrag_uploader.py ./hupd_processed
 
