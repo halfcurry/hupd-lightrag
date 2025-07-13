@@ -63,3 +63,7 @@ lightrag-server
 python lightrag_uploader.py ./hupd_processed
 ```
 
+### Running Gradio UI
+
+python chatbot/patent_chatbot.py
+
