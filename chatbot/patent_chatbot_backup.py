@@ -40,12 +40,6 @@ from .patent_analyzer import PatentAnalyzer, PatentInfo, AnalysisResult
 # Import session logger
 from .session_logger import SessionLogger
 
-# Import auto-sync functionality
-from monitoring.sync_sqlite_to_postgres import DataSync
-
-# Import LightRAG storage sync
-from monitoring.lightrag_storage_sync import lightrag_sync
-
 # Response database removed - using session logger for tracking
 
 # Import for internet search
@@ -194,31 +188,6 @@ class PatentChatbot:
         # Initialize session logger
         self.session_logger = SessionLogger()
         
-        # Initialize auto-sync for SQLite to PostgreSQL
-        self.auto_sync_enabled = enable_monitoring
-        self.sync_thread = None
-        self.sync_running = False
-        
-        if self.auto_sync_enabled:
-            try:
-                self.data_sync = DataSync()
-                self._start_auto_sync()
-                print("✅ Auto-sync initialized successfully")
-            except Exception as e:
-                print(f"⚠️ Auto-sync initialization failed: {e}")
-                self.auto_sync_enabled = False
-        
-        # Initialize LightRAG storage sync
-        self.lightrag_sync_enabled = enable_monitoring
-        if self.lightrag_sync_enabled:
-            try:
-                # Start LightRAG storage auto-sync
-                lightrag_sync.start_auto_sync()
-                print("✅ LightRAG storage sync initialized successfully")
-            except Exception as e:
-                print(f"⚠️ LightRAG storage sync initialization failed: {e}")
-                self.lightrag_sync_enabled = False
-        
         # Patent field categories based on G06N/G06V analysis
         self.patent_field_categories = [
             "Machine Learning & AI",
@@ -282,80 +251,7 @@ Please choose (1-3):
                 "Take care! 🤖 Come back anytime for more patent help."
             ]
         }
-    
-    def _start_auto_sync(self):
-        """Start the auto-sync thread"""
-        if not self.auto_sync_enabled or self.sync_running:
-            return
         
-        self.sync_running = True
-        self.sync_thread = threading.Thread(target=self._auto_sync_worker, daemon=True)
-        self.sync_thread.start()
-        logger.info("Auto-sync thread started")
-    
-    def _auto_sync_worker(self):
-        """Worker thread for auto-sync"""
-        interval = 30  # Sync every 30 seconds
-        
-        while self.sync_running:
-            try:
-                self.data_sync.sync_all()
-                logger.debug(f"Auto-sync completed successfully. Next sync in {interval}s...")
-            except Exception as e:
-                logger.error(f"Auto-sync failed: {e}")
-            
-            time.sleep(interval)
-    
-    def _stop_auto_sync(self):
-        """Stop the auto-sync thread"""
-        if self.sync_running:
-            self.sync_running = False
-            if self.sync_thread:
-                self.sync_thread.join(timeout=5)
-            logger.info("Auto-sync thread stopped")
-    
-    def manual_sync(self):
-        """Manually trigger a sync"""
-        if self.auto_sync_enabled and hasattr(self, 'data_sync'):
-            try:
-                self.data_sync.sync_all()
-                logger.info("Manual sync completed successfully")
-                return True
-            except Exception as e:
-                logger.error(f"Manual sync failed: {e}")
-                return False
-        return False
-    
-    def manual_lightrag_sync(self):
-        """Manually trigger LightRAG storage sync"""
-        if self.lightrag_sync_enabled:
-            try:
-                result = lightrag_sync.manual_sync()
-                logger.info(f"LightRAG manual sync completed: {result}")
-                return True
-            except Exception as e:
-                logger.error(f"LightRAG manual sync failed: {e}")
-                return False
-        return False
-    
-    def get_lightrag_sync_status(self):
-        """Get LightRAG storage sync status"""
-        if self.lightrag_sync_enabled:
-            return lightrag_sync.get_sync_status()
-        return {'error': 'LightRAG sync not enabled'}
-    
-    def get_lightrag_storage_stats(self):
-        """Get LightRAG storage statistics"""
-        if self.lightrag_sync_enabled:
-            return lightrag_sync.get_storage_stats()
-        return {'error': 'LightRAG sync not enabled'}
-    
-    def verify_lightrag_sync(self):
-        """Verify LightRAG storage sync status"""
-        if self.lightrag_sync_enabled:
-            return lightrag_sync.verify_sync()
-        return {'error': 'LightRAG sync not enabled'}
-    
     def _is_general_conversation(self, query: str) -> bool:
         """Check if the query is general conversation that doesn't need LightRAG"""
         query_lower = query.lower().strip()
@@ -2905,17 +2801,6 @@ Response:"""
     
     def cleanup(self):
         """Cleanup monitoring resources and save session data"""
-        # Stop auto-sync
-        self._stop_auto_sync()
-        
-        # Stop LightRAG storage sync
-        if self.lightrag_sync_enabled:
-            try:
-                lightrag_sync.stop_auto_sync()
-                print("✅ LightRAG storage sync stopped")
-            except Exception as e:
-                print(f"⚠️ Failed to stop LightRAG storage sync: {e}")
-        
         # Save session data
         try:
             self.session_logger.save_session()

@@ -19,7 +19,7 @@ def start_server():
         print(f"⚠️  No .env file found at {env_file}")
     
     # Set working directory for LightRAG
-    working_dir = project_dir / "lightrag_storage"
+    working_dir = project_dir / "rag_storage"
     working_dir.mkdir(exist_ok=True)
     os.chdir(working_dir)
     
