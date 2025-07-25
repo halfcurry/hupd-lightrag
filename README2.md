@@ -65,5 +65,5 @@ python lightrag_uploader.py ./hupd_processed
 
 ### Running Gradio UI
 
-python chatbot/patent_chatbot.py
+python main.py --mode chat --web-interface
 

@@ -19,6 +19,11 @@ from datetime import datetime
 import asyncio
 import threading
 
+import os
+
+OLLAMA_HOST = os.environ.get("OLLAMA_BINDING_HOST", "")
+LIGHTRAG_SERVER = os.environ.get("LIGHTRAG_SERVER_URL", "http://localhost:9621")
+
 # Import our guardrails validator
 from chatbot.guardrails_validator import CustomGuardrailsValidator, GuardrailScores
 
@@ -157,7 +162,7 @@ class PatentChatbot:
     Patent analysis chatbot with optional guardrails and evaluation
     """
     
-    def __init__(self, lightrag_url: str = "http://localhost:9621", with_guardrails: bool = True, enable_monitoring: bool = True):
+    def __init__(self, lightrag_url: str = LIGHTRAG_SERVER, with_guardrails: bool = True, enable_monitoring: bool = True):
         self.lightrag_url = lightrag_url
         self.with_guardrails = with_guardrails
         self.guardrails_validator = CustomGuardrailsValidator() if with_guardrails else None
@@ -1237,7 +1242,7 @@ IMPORTANT: Be SPECIFIC and DETAILED. Include actual patent numbers, titles, and 
             import requests
             try:
                 ollama_response = requests.post(
-                    "http://localhost:11434/api/generate",
+                    OLLAMA_HOST + "/api/generate",
                     json={
                         "model": "qwen2.5:14b-instruct",
                         "prompt": prompt,
@@ -1312,7 +1317,7 @@ Provide a detailed analysis:"""
             # Generate response using Ollama (increased timeout for patent analysis)
             import requests
             ollama_response = requests.post(
-                "http://localhost:11434/api/generate",
+                OLLAMA_HOST + "/api/generate",
                 json={
                     "model": "qwen2.5:14b-instruct",
                     "prompt": prompt,
@@ -1377,7 +1382,7 @@ Recommendations:
         try:
             import requests
             ollama_response = requests.post(
-                "http://localhost:11434/api/generate",
+                OLLAMA_HOST + "/api/generate",
                 json={
                     "model": "qwen2.5:14b-instruct",
                     "prompt": f"User: {query}\nAssistant:",
@@ -2094,7 +2099,7 @@ INSTRUCTIONS:
 RESPONSE:"""
                 
                 ollama_response = requests.post(
-                    "http://localhost:11434/api/generate",
+                    OLLAMA_HOST + "/api/generate",
                     json={
                         "model": "qwen2.5:14b-instruct",
                         "prompt": prompt,
@@ -2190,7 +2195,7 @@ RESPONSE:"""
             # Generate response using Ollama
             import requests
             ollama_response = requests.post(
-                "http://localhost:11434/api/generate",
+                OLLAMA_HOST + "/api/generate",
                 json={
                     "model": "qwen2.5:14b-instruct",
                     "prompt": prompt,
@@ -2346,7 +2351,7 @@ Response:"""
             
             # Use Ollama for LLM generation
             llm_response = requests.post(
-                "http://localhost:11434/api/generate",
+                OLLAMA_HOST + "/api/generate",
                 json={
                     "model": "qwen2.5:14b-instruct",
                     "prompt": prompt,
@@ -2380,7 +2385,7 @@ Please provide a comprehensive, helpful response.
 Response:"""
             
             llm_response = requests.post(
-                "http://localhost:11434/api/generate",
+                OLLAMA_HOST + "/api/generate",
                 json={
                     "model": "qwen2.5:14b-instruct",
                     "prompt": prompt,
@@ -2888,7 +2893,7 @@ Please provide a clean, organized summary with 8-10 patents if available."""
             import requests
             try:
                 ollama_response = requests.post(
-                    "http://localhost:11434/api/generate",
+                    OLLAMA_HOST + "/api/generate",
                     json={
                         "model": "qwen2.5:14b-instruct",
                         "prompt": prompt,
@@ -2947,7 +2952,7 @@ Format as a numbered list with clear sections. Aim for 8-10 total patents."""
             import requests
             try:
                 ollama_response = requests.post(
-                    "http://localhost:11434/api/generate",
+                    OLLAMA_HOST + "/api/generate",
                     json={
                         "model": "qwen2.5:14b-instruct",
                         "prompt": prompt,

@@ -18,6 +18,11 @@ import requests
 
 from .google_patents_api import get_patent_details, search_google_patents
 
+import os
+
+OLLAMA_HOST = os.environ.get("OLLAMA_BINDING_HOST", "")
+LIGHTRAG_SERVER = os.environ.get("LIGHTRAG_SERVER_URL", "http://localhost:9621")
+
 logger = logging.getLogger(__name__)
 
 class EnhancedPatentAnalyzer:
@@ -25,7 +30,7 @@ class EnhancedPatentAnalyzer:
     Enhanced patent analyzer with Google Patents integration and RAG workflow
     """
     
-    def __init__(self, lightrag_url: str = "http://localhost:9621", ollama_url: str = "http://localhost:11434"):
+    def __init__(self, lightrag_url: str = LIGHTRAG_SERVER, ollama_url: str = OLLAMA_HOST):
         self.lightrag_url = lightrag_url
         self.ollama_url = ollama_url
         self.ingestion_queue_dir = Path("ingestion_queue")

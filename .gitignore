@@ -158,3 +158,6 @@ hf_cache
 data/rag_storage
 
 LightRAG
+sessions
+sessions.db
+lightrag_backup.db

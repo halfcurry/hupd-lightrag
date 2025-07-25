@@ -7,13 +7,18 @@ from typing import Dict, List, Optional, Any
 import threading
 import logging
 
+import os 
+POSTGRES_USER = os.environ.get("LOCAL_POSTGRES_USER", "myuser")
+POSTGRES_PASSWORD = os.environ.get("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
+POSTGRES_DB = os.environ.get("LOCAL_POSTGRES_DB", "patent_monitoring")
+
 class PostgresMonitor:
-    def __init__(self, db_name="patent_monitoring", host="localhost", port=5432, user=None, password=None):
-        self.db_name = db_name
+    def __init__(self, db_name=POSTGRES_DB, host="localhost", port=5432, user=POSTGRES_USER, password=POSTGRES_PASSWORD):
+        self.db_name = POSTGRES_DB
         self.host = host
         self.port = port
-        self.user = user
-        self.password = password
+        self.user = POSTGRES_USER
+        self.password = POSTGRES_PASSWORD
         self.connection = None
         self.lock = threading.Lock()
         
@@ -24,11 +29,11 @@ class PostgresMonitor:
         """Get database connection"""
         if self.connection is None or self.connection.closed:
             self.connection = psycopg2.connect(
-                dbname=self.db_name,
+                dbname=POSTGRES_DB,
                 host=self.host,
                 port=self.port,
-                user=self.user,
-                password=self.password
+                user=POSTGRES_USER,
+                password=POSTGRES_PASSWORD
             )
         return self.connection
     

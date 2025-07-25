@@ -15,15 +15,21 @@ from typing import Dict, List, Optional
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+import os
+
+POSTGRES_USER = os.environ.get("LOCAL_POSTGRES_USER", "myuser")
+POSTGRES_PASSWORD = os.environ.get("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
+POSTGRES_DB = os.environ.get("LOCAL_POSTGRES_DB", "patent_monitoring")
+
 class DataSync:
     def __init__(self, sqlite_path: str = "sessions.db", postgres_config: Dict = None):
         self.sqlite_path = sqlite_path
         self.postgres_config = postgres_config or {
             'host': 'localhost',
             'port': 5432,
-            'database': 'patent_monitoring',
-            'user': 'aniket.rastogi',
-            'password': ''
+            'database': POSTGRES_DB,
+            'user': POSTGRES_USER,
+            'password': POSTGRES_PASSWORD
         }
     
     def get_sqlite_connection(self):
