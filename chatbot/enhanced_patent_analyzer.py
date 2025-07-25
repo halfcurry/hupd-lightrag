@@ -20,8 +20,13 @@ from .google_patents_api import get_patent_details, search_google_patents
 
 import os
 
-OLLAMA_HOST = os.environ.get("OLLAMA_BINDING_HOST", "")
-LIGHTRAG_SERVER = os.environ.get("LIGHTRAG_SERVER_URL", "http://localhost:9621")
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
+OLLAMA_HOST = os.getenv("OLLAMA_BINDING_HOST", "")
+LIGHTRAG_SERVER = os.getenv("LIGHTRAG_SERVER_URL", "http://localhost:9621")
 
 logger = logging.getLogger(__name__)
 
@@ -31,8 +36,8 @@ class EnhancedPatentAnalyzer:
     """
     
     def __init__(self, lightrag_url: str = LIGHTRAG_SERVER, ollama_url: str = OLLAMA_HOST):
-        self.lightrag_url = lightrag_url
-        self.ollama_url = ollama_url
+        self.lightrag_url = LIGHTRAG_SERVER
+        self.ollama_url = OLLAMA_HOST
         self.ingestion_queue_dir = Path("ingestion_queue")
         self.ingestion_queue_dir.mkdir(exist_ok=True)
     

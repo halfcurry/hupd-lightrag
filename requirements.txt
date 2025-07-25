@@ -5,6 +5,8 @@ requests
 psycopg2-binary
 python-dotenv
 gradio
+uvicorn[standard]
+fastapi
 
 neo4j>=5.0.0
 guardrails-ai

@@ -7,10 +7,15 @@ from typing import Dict, List, Optional, Any
 import threading
 import logging
 
-import os 
-POSTGRES_USER = os.environ.get("LOCAL_POSTGRES_USER", "myuser")
-POSTGRES_PASSWORD = os.environ.get("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
-POSTGRES_DB = os.environ.get("LOCAL_POSTGRES_DB", "patent_monitoring")
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+POSTGRES_USER = os.getenv("LOCAL_POSTGRES_USER", "myuser")
+POSTGRES_PASSWORD = os.getenv("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
+POSTGRES_DB = os.getenv("LOCAL_POSTGRES_DB", "patent_monitoring")
 
 class PostgresMonitor:
     def __init__(self, db_name=POSTGRES_DB, host="localhost", port=5432, user=POSTGRES_USER, password=POSTGRES_PASSWORD):

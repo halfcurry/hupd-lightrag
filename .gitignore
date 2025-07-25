@@ -161,3 +161,4 @@ LightRAG
 sessions
 sessions.db
 lightrag_backup.db
+.gradio

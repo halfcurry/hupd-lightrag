@@ -17,9 +17,13 @@ logger = logging.getLogger(__name__)
 
 import os
 
-POSTGRES_USER = os.environ.get("LOCAL_POSTGRES_USER", "myuser")
-POSTGRES_PASSWORD = os.environ.get("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
-POSTGRES_DB = os.environ.get("LOCAL_POSTGRES_DB", "patent_monitoring")
+from dotenv import load_dotenv
+
+load_dotenv()
+
+POSTGRES_USER = os.getenv("LOCAL_POSTGRES_USER", "myuser")
+POSTGRES_PASSWORD = os.getenv("LOCAL_POSTGRES_PASSWORD", "mysecretpassword")
+POSTGRES_DB = os.getenv("LOCAL_POSTGRES_DB", "patent_monitoring")
 
 class DataSync:
     def __init__(self, sqlite_path: str = "sessions.db", postgres_config: Dict = None):

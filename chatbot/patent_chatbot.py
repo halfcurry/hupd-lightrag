@@ -20,6 +20,9 @@ import asyncio
 import threading
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 OLLAMA_HOST = os.environ.get("OLLAMA_BINDING_HOST", "")
 LIGHTRAG_SERVER = os.environ.get("LIGHTRAG_SERVER_URL", "http://localhost:9621")
@@ -67,6 +70,13 @@ from .enhanced_patent_analyzer import EnhancedPatentAnalyzer
 from .query_expansion import query_expander
 
 logger = logging.getLogger(__name__)
+
+import os
+
+OLLAMA_HOST = os.getenv("OLLAMA_BINDING_HOST", "")
+LIGHTRAG_SERVER = os.getenv("LIGHTRAG_SERVER_URL", "http://localhost:9621")
+
+logger.error(f"Ollama host: {OLLAMA_HOST}")
 
 def get_timestamp():
     """Get current timestamp in a readable format"""
@@ -2797,12 +2807,47 @@ Response:"""
             
             # Create and launch the interface
             interface = self.create_gradio_interface()
+            interface.queue()
             interface.launch(
                 server_name=server_name,
                 server_port=available_port,
                 share=share,
                 show_error=True
             )
+            
+        except Exception as e:
+            print(f"❌ Error running chatbot: {e}")
+            logger.error(f"Error running chatbot: {e}")
+
+    def get_gradio_interface(self, server_name="0.0.0.0", server_port=7860, share=False):
+        """Run the Gradio interface with automatic port finding"""
+        try:
+            # Try to find an available port
+            import socket
+            
+            def find_free_port(start_port=7860, max_attempts=10):
+                for port in range(start_port, start_port + max_attempts):
+                    try:
+                        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                            s.bind(('localhost', port))
+                            return port
+                    except OSError:
+                        continue
+                return None
+            
+            # Find available port
+            available_port = find_free_port(server_port)
+            if available_port is None:
+                print(f"❌ No available ports found in range {server_port}-{server_port+10}")
+                return
+            
+            if available_port != server_port:
+                print(f"🔧 Port {server_port} was busy, using port {available_port} instead")
+            
+            # Create and launch the interface
+            interface = self.create_gradio_interface()
+            
+            return interface
             
         except Exception as e:
             print(f"❌ Error running chatbot: {e}")

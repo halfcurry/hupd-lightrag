@@ -17,6 +17,8 @@ import logging
 from typing import List, Dict
 import argparse
 from datetime import datetime
+import gradio as gr
+from fastapi import FastAPI
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -94,6 +96,25 @@ class PatentPipelineOrchestrator:
         finally:
             if self.chatbot:
                 self.chatbot.cleanup()
+
+    def get_chatbot(self, with_guardrails: bool = True, enable_monitoring: bool = True, web_interface: bool = False):
+        """Run the interactive chatbot with or without guardrails and monitoring"""
+        print(f"🤖 Starting Patent Analysis Assistant...")
+        print(f"   Interface: {'🌐 Web (Gradio)' if web_interface else '💻 CLI'}")
+        print(f"   Guardrails: {'ENABLED' if with_guardrails else 'DISABLED'}")
+        print(f"   Monitoring: {'ENABLED' if enable_monitoring else 'DISABLED'}")
+        
+        try:
+            self.chatbot = PatentChatbot(
+                with_guardrails=with_guardrails,
+                enable_monitoring=enable_monitoring
+            )
+            
+            gradioapp = self.chatbot.get_gradio_interface()
+            return gradioapp
+                
+        except Exception as e:
+            print(f"❌ Error getting chatbot: {e}")
     
     def run_evaluation(self, queries: List[str] = None):
         """Run comprehensive evaluation with guardrails metrics"""
@@ -461,6 +482,22 @@ def main():
         orchestrator.run_evaluation()
     elif args.mode == "pipeline":
         orchestrator.run_full_pipeline()
+
+
+# 1. Create a standard FastAPI app instance
+app = FastAPI()
+
+orchestrator_for_uvicorn = PatentPipelineOrchestrator()
+gradio_chatbot_uvicorn = orchestrator_for_uvicorn.get_chatbot(
+    with_guardrails=True,
+    web_interface=True
+)
+
+gradio_chatbot_uvicorn.queue(max_size=10, default_concurrency_limit=10)
+
+# 4. Mount the Gradio interface onto the FastAPI app
+# The Gradio app will be served at the root path "/"
+app = gr.mount_gradio_app(app, gradio_chatbot_uvicorn, path="/app")
 
 if __name__ == "__main__":
     main() 

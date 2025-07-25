@@ -66,4 +66,5 @@ python lightrag_uploader.py ./hupd_processed
 ### Running Gradio UI
 
 python main.py --mode chat --web-interface
+uvicorn main:app --ws-ping-interval 300 --ws-ping-timeout 300 --timeout-keep-alive 300
 

@@ -20,9 +20,13 @@ import asyncio
 import threading
 
 import os
+from dotenv import load_dotenv
 
-OLLAMA_HOST = os.environ.get("OLLAMA_BINDING_HOST", "")
-LIGHTRAG_SERVER = os.environ.get("LIGHTRAG_SERVER_URL", "http://localhost:9621")
+# Load environment variables from the .env file
+load_dotenv()
+
+OLLAMA_HOST = os.getenv("OLLAMA_BINDING_HOST", "")
+LIGHTRAG_SERVER = os.getenv("LIGHTRAG_SERVER_URL", "http://localhost:9621")
 
 # Import our guardrails validator
 from chatbot.guardrails_validator import CustomGuardrailsValidator, GuardrailScores
@@ -2655,6 +2659,8 @@ Response:"""
             # This would be triggered when field selection is needed
             # For now, we'll handle it in the chat interface
             
+        # interface.queue()
+        
         return interface
     
     def _ensure_monitoring_started(self):
@@ -2693,6 +2699,7 @@ Response:"""
             
             # Create and launch the interface
             interface = self.create_gradio_interface()
+            interface.queue()
             interface.launch(
                 server_name=server_name,
                 server_port=available_port,
