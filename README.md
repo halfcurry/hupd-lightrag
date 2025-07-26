@@ -1,3 +1,7 @@
+# REFER TO README2.MD FOR SETUP
+
+# REFER TO UPLOADED PROJECT REPORT PDF FOR ALL DETAILS
+
 # Patent Analysis Chatbot with Enhanced Monitoring & Grafana Integration
 
 ## 🚀 Overview
